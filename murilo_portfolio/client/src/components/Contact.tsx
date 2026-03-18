@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Send, Download } from 'lucide-react';
 import { useState } from 'react';
 
 /**
@@ -57,8 +57,8 @@ export default function Contact() {
     },
     {
       icon: MapPin,
-      label: 'LocalizaÃ§Ã£o',
-      value: 'BrasÃ­lia, DF',
+      label: 'Localização',
+      value: 'Brasília, DF',
       href: '#',
     },
   ];
@@ -71,7 +71,7 @@ export default function Contact() {
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">Entre em Contato</h2>
             <p className="text-xl text-foreground/70 max-w-2xl">
-              Estou sempre aberto a novas oportunidades e colaboraÃ§Ãµes. Sinta-se livre para entrar em contato!
+              Estou sempre aberto a novas oportunidades e colaborações. Sinta-se livre para entrar em contato!
             </p>
           </div>
 
@@ -120,6 +120,15 @@ export default function Contact() {
                     GitHub
                   </a>
                 </div>
+                <p className="text-sm font-semibold text-foreground">Meu currículo</p>
+                <a
+                  href="/MuriloG_CV.pdf"
+                  download="MuriloG_CV.pdf"
+                  className="w-full flex items-center justify-center gap-2 p-3 bg-background border border-border rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-medium text-sm"
+                >
+                  <Download size={20} />
+                  CV Download
+                </a>
               </div>
             </div>
 

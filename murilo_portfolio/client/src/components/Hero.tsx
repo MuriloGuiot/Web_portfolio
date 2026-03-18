@@ -70,11 +70,13 @@ export default function Hero() {
 
           {/* Right content - Illustration */}
           <div className="hidden md:flex items-center justify-center">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030783766/ihyVQBJNyiEFGnQrhRiS9Y/developer-illustration-6zcZDiF5QZXd59kUoaLyaG.webp"
-              alt="Developer illustration"
-              className="w-full max-w-md h-auto drop-shadow-lg"
-            />
+            <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+              <img
+                src="/opcao2.jpg"
+                alt="Murilo Guiot"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
