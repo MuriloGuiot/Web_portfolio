@@ -23,10 +23,7 @@ export default function Header() {
       <nav className="container flex items-center justify-between py-4">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">M</span>
-          </div>
-          <span className="font-bold text-lg text-foreground hidden sm:inline">Murilo</span>
+          <span className="font-bold text-lg text-foreground">Portifólio</span>
         </a>
 
         {/* Desktop Navigation */}
@@ -40,12 +37,6 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
-          >
-            Contato
-          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -72,13 +63,6 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contato
-            </a>
           </div>
         </div>
       )}

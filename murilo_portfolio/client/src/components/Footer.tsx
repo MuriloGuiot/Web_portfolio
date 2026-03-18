@@ -16,10 +16,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="font-bold text-lg">M</span>
-              </div>
-              <span className="font-bold text-lg">Murilo</span>
+              <span className="font-bold text-lg">Portifólio</span>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
               Full Stack Developer especializado em criar soluções escaláveis e inovadoras.
@@ -59,7 +56,7 @@ export default function Footer() {
             <ul className="space-y-2 text-white/70 text-sm">
               <li>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/MuriloGuiot"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors duration-200"
@@ -93,7 +90,7 @@ export default function Footer() {
             <h4 className="font-semibold text-white">Redes Sociais</h4>
             <div className="flex gap-3">
               <a
-                href="https://github.com"
+                href="https://github.com/MuriloGuiot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white/10 hover:bg-primary rounded-lg transition-colors duration-200"

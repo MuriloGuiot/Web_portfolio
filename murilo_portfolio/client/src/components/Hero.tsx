@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight, Github, Linkedin } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -57,20 +57,13 @@ export default function Hero() {
                 <Linkedin size={20} />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/MuriloGuiot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-muted hover:bg-primary hover:text-white rounded-lg transition-colors duration-200"
                 aria-label="GitHub"
               >
                 <Github size={20} />
-              </a>
-              <a
-                href="mailto:muriloguiot@gmail.com"
-                className="p-3 bg-muted hover:bg-primary hover:text-white rounded-lg transition-colors duration-200"
-                aria-label="Email"
-              >
-                <Mail size={20} />
               </a>
             </div>
           </div>

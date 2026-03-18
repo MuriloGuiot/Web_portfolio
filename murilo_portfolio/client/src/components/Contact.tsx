@@ -3,9 +3,9 @@ import { useState } from 'react';
 
 /**
  * Contact Section Component
- * Design: Minimalismo Técnico - Formulário limpo + informações de contato
- * - Cards com informações de contato
- * - Formulário responsivo
+ * Design: Minimalismo TÃ©cnico - FormulÃ¡rio limpo + informaÃ§Ãµes de contato
+ * - Cards com informaÃ§Ãµes de contato
+ * - FormulÃ¡rio responsivo
  * - Links para redes sociais
  */
 export default function Contact() {
@@ -27,8 +27,14 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log('Form submitted:', formData);
+
+    const subject = encodeURIComponent(`Nova mensagem do portifólio - ${formData.name}`);
+    const body = encodeURIComponent(
+      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
+    );
+
+    window.location.href = `mailto:muriloguiot@gmail.com?subject=${subject}&body=${body}`;
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -51,8 +57,8 @@ export default function Contact() {
     },
     {
       icon: MapPin,
-      label: 'Localização',
-      value: 'Brasília, DF',
+      label: 'LocalizaÃ§Ã£o',
+      value: 'BrasÃ­lia, DF',
       href: '#',
     },
   ];
@@ -65,7 +71,7 @@ export default function Contact() {
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">Entre em Contato</h2>
             <p className="text-xl text-foreground/70 max-w-2xl">
-              Estou sempre aberto a novas oportunidades e colaborações. Sinta-se livre para entrar em contato!
+              Estou sempre aberto a novas oportunidades e colaboraÃ§Ãµes. Sinta-se livre para entrar em contato!
             </p>
           </div>
 
@@ -105,7 +111,7 @@ export default function Contact() {
                     LinkedIn
                   </a>
                   <a
-                    href="https://github.com"
+                    href="https://github.com/MuriloGuiot"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 p-3 bg-background border border-border rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-medium text-sm"
@@ -178,7 +184,7 @@ export default function Contact() {
 
                 {submitted && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 font-medium text-center">
-                    ✓ Mensagem enviada com sucesso! Obrigado pelo contato.
+                    Sua mensagem foi preparada no seu aplicativo de e-mail.
                   </div>
                 )}
               </form>

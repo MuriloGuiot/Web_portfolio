@@ -34,7 +34,7 @@ export default function About() {
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">Sobre Mim</h2>
             <p className="text-xl text-foreground/70 max-w-2xl">
-              Desenvolvedor Full Stack apaixonado por criar soluções escaláveis e inovadoras. Com experiência em C#, Unity, React Native e .NET, combino expertise técnica com visão estratégica.
+              Desenvolvedor Full Stack sempre motivado a criar soluções escaláveis e impactantes. Com experiência em C#, Unity, React Native e .NET, combino expertise técnica com visão estratégica.
             </p>
           </div>
 

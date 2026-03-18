@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 /**
  * Projects Section Component
@@ -12,29 +12,29 @@ export default function Projects() {
     {
       title: 'Loopi Club',
       description: 'Aplicação mobile desenvolvida em React Native para gerenciamento de comunidades. Integração com APIs complexas, otimização de UI/UX e gerenciamento de estado avançado.',
-      technologies: ['React Native', 'TypeScript', 'Context API', 'REST API'],
-      role: 'React Native Developer',
+      technologies: ['React Native', 'TypeScript', 'Context API', 'REST API', '.NET', 'Unity', 'Postman', 'Android Studio Code'],
+      role: 'React Native / FullStack Game Developer',
       period: 'Loopi Group',
-      link: '#',
-      github: '#',
+      link: 'https://apps.apple.com/br/app/loopi-club/id6633438519',
+      status: null,
     },
     {
       title: 'SegPlay',
       description: 'Plataforma interativa desenvolvida em React Native para gamificação de segurança. Implementação de game mechanics, sistema de pontuação e integração com backend .NET.',
-      technologies: ['React Native', 'Unity', 'C#', '.NET'],
-      role: 'FullStack Game Developer',
+      technologies: ['React Native', 'Typescript', 'Context API', 'Postman', 'Android Studio Code'],
+      role: 'React Native Developer',
       period: 'Loopi Group',
-      link: '#',
-      github: '#',
+      link: 'https://apps.apple.com/br/app/seg-play/id6741806032',
+      status: null,
     },
     {
-      title: 'AgroCarbonBR Dashboard',
-      description: 'Dashboard de análise de dados ESG desenvolvido em React com visualizações avançadas. Backend em .NET com processamento de dados ambientais complexos.',
-      technologies: ['React.js', 'C#', '.NET', 'PostgreSQL', 'Recharts'],
+      title: 'Carbon Asset & GHG Quantification App',
+      description: 'Aplicativo de análise de dados ESG desenvolvido em React com visualizações avançadas. Backend em .NET com processamento de dados ambientais complexos.',
+      technologies: ['React.js', 'C#', '.NET', 'PostgreSQL', 'Recharts', 'Postman'],
       role: 'Head of Software Development',
       period: 'AgroCarbonBR',
       link: '#',
-      github: '#',
+      status: 'Em Progresso...',
     },
   ];
 
@@ -44,7 +44,7 @@ export default function Projects() {
         <div className="space-y-16">
           {/* Section Header */}
           <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Projetos</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Projetos que fiz parte</h2>
             <p className="text-xl text-foreground/70 max-w-2xl">
               Seleção de projetos que demonstram minha expertise em desenvolvimento Full Stack, mobile e game development.
             </p>
@@ -83,21 +83,31 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex gap-3 pt-4 border-t border-border">
-                    <a
-                      href={project.link}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-sm"
-                    >
-                      Ver Demo
-                      <ExternalLink size={16} />
-                    </a>
-                    <a
-                      href={project.github}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-blue-50 transition-colors duration-200 font-medium text-sm"
-                    >
-                      GitHub
-                      <Github size={16} />
-                    </a>
+                  <div className="pt-4 border-t border-border">
+                    {project.status ? (
+                      <p className="text-center text-sm font-medium text-foreground/60">
+                        {project.status}
+                      </p>
+                    ) : (
+                      <div className="flex gap-3">
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-sm"
+                        >
+                          Acessar app
+                          <ExternalLink size={16} />
+                        </a>
+                        {/* <a
+                          href={project.github}
+                          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-blue-50 transition-colors duration-200 font-medium text-sm"
+                        >
+                          GitHub
+                          <Github size={16} />
+                        </a> */}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -110,7 +120,7 @@ export default function Projects() {
               Quer ver mais projetos? Visite meu GitHub para explorar meu trabalho completo.
             </p>
             <a
-              href="https://github.com"
+              href="https://github.com/MuriloGuiot"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-semibold"
