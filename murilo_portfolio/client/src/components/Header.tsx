@@ -23,7 +23,7 @@ export default function Header() {
       <nav className="container flex items-center justify-between py-4">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <span className="font-bold text-lg text-foreground">Portifólio</span>
+          <span className="font-bold text-lg text-foreground">Portfólio</span>
         </a>
 
         {/* Desktop Navigation */}
