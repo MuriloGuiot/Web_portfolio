@@ -44,7 +44,7 @@ export default function Projects() {
         <div className="space-y-16">
           {/* Section Header */}
           <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Projetos que fiz parte</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Projetos de que participei</h2>
             <p className="text-xl text-foreground/70 max-w-2xl">
               Seleção de projetos que demonstram minha expertise em desenvolvimento Full Stack, mobile e game development.
             </p>
