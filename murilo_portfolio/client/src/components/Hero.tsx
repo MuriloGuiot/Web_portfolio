@@ -1,6 +1,8 @@
 import { ArrowRight, Github, Linkedin } from 'lucide-react';
 
 export default function Hero() {
+  const profileImageUrl = `${import.meta.env.BASE_URL}opcao2.jpg`;
+
   return (
     <section className="relative overflow-hidden bg-background py-20 md:py-32">
       {/* Background gradient */}
@@ -72,7 +74,7 @@ export default function Hero() {
           <div className="hidden md:flex items-center justify-center">
             <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
               <img
-                src="/opcao2.jpg"
+                src={profileImageUrl}
                 alt="Murilo Guiot"
                 className="w-full h-full object-cover"
               />

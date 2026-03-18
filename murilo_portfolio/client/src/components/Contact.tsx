@@ -9,6 +9,8 @@ import { useState } from 'react';
  * - Links para redes sociais
  */
 export default function Contact() {
+  const cvDownloadUrl = `${import.meta.env.BASE_URL}MuriloG_CV.pdf`;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -122,7 +124,7 @@ export default function Contact() {
                 </div>
                 <p className="text-sm font-semibold text-foreground">Meu currículo</p>
                 <a
-                  href="/MuriloG_CV.pdf"
+                  href={cvDownloadUrl}
                   download="MuriloG_CV.pdf"
                   className="w-full flex items-center justify-center gap-2 p-3 bg-background border border-border rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-medium text-sm"
                 >
