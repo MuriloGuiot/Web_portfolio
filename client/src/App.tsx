@@ -6,10 +6,13 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
+const ghPagesBase = "/Web_portfolio";
+
 const routerBase =
-  import.meta.env.BASE_URL === "/"
-    ? ""
-    : import.meta.env.BASE_URL.replace(/\/$/, "");
+  typeof window !== "undefined" &&
+  window.location.pathname.startsWith(`${ghPagesBase}/`)
+    ? ghPagesBase
+    : "";
 
 function AppRoutes() {
   return (
