@@ -1,53 +1,55 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowRight, MapPin } from "lucide-react";
-import { metrics, profile } from "@/data/profile";
-import { GithubIcon, LinkedinIcon } from "./common";
+import { education, heroStack, metrics, profile } from "@/data/profile";
+import { GithubIcon, LinkedinIcon, Tag } from "./common";
 
-const k = "text-violet-600 dark:text-violet-400"; // keyword
-const t = "text-cyan-700 dark:text-cyan-300"; // type
-const s = "text-emerald-700 dark:text-emerald-300"; // string
-const c = "text-subtle"; // comment / punctuation
-
-function CodeWindow() {
+/** Card de perfil: foto, papel atual, formação e stack principal. */
+function ProfileCard() {
+  const rows = [
+    { label: "Atualmente", value: `${profile.role} · ${profile.current.company}` },
+    { label: "Formação", value: `${education.course.replace("Bacharelado em ", "")} · IDP` },
+    { label: "Base", value: profile.location },
+  ];
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-card shadow-2xl shadow-black/10 dark:shadow-black/40">
-      <div className="flex items-center gap-2 border-b border-border px-4 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-        <span className="ml-2 font-mono text-[11px] text-subtle">Developer.cs</span>
+    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/10 dark:shadow-black/40">
+      <div className="flex items-center gap-4 p-5 sm:p-6">
+        <img
+          src={`${import.meta.env.BASE_URL}${profile.photo}`}
+          alt={`Foto de ${profile.name}`}
+          width={80}
+          height={80}
+          className="h-20 w-20 shrink-0 rounded-xl object-cover object-[50%_28%]"
+        />
+        <div className="min-w-0">
+          <p className="truncate text-lg font-semibold">{profile.name}</p>
+          <p className="truncate font-mono text-xs text-muted-foreground">{profile.focus}</p>
+          <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-success">
+            <span className="h-1.5 w-1.5 rounded-full bg-success" />
+            Aberto a conversas
+          </p>
+        </div>
       </div>
-      <pre className="overflow-x-auto px-4 py-4 font-mono text-[12px] leading-[1.75] sm:text-[12.5px]">
-        <code>
-          <span className={c}>// Clean Architecture · DDD · SOLID</span>
-          {"\n"}
-          <span className={k}>public sealed record</span> <span className={t}>Developer</span>
-          <span className={c}>(</span>
-          {"\n  "}
-          <span className={t}>string</span> Name <span className={c}>=</span>{" "}
-          <span className={s}>"Murilo Guiot"</span>
-          <span className={c}>,</span>
-          {"\n  "}
-          <span className={t}>string</span> Role <span className={c}>=</span>{" "}
-          <span className={s}>"Full Stack .NET"</span>
-          <span className={c}>,</span>
-          {"\n  "}
-          <span className={t}>string</span>[] Stack<span className={c}>);</span>
-          {"\n\n"}
-          <span className={k}>var</span> murilo <span className={c}>=</span>{" "}
-          <span className={k}>new</span> <span className={t}>Developer</span>
-          <span className={c}>(</span>Stack: [
-          {"\n  "}
-          <span className={s}>"C#"</span>, <span className={s}>".NET 10"</span>,{" "}
-          <span className={s}>"React"</span>, <span className={s}>"LLMs"</span>]
-          <span className={c}>);</span>
-          {"\n\n"}
-          <span className={k}>await</span> murilo.<span className={t}>ShipAsync</span>
-          <span className={c}>(</span>toProduction: <span className={k}>true</span>
-          <span className={c}>);</span>
-          <span className="ml-0.5 inline-block h-[1.1em] w-[7px] translate-y-[3px] animate-pulse bg-primary" />
-        </code>
-      </pre>
+
+      <dl className="border-t border-border">
+        {rows.map(row => (
+          <div
+            key={row.label}
+            className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-3.5 sm:px-6"
+          >
+            <dt className="font-mono text-[11px] tracking-wider text-subtle uppercase">{row.label}</dt>
+            <dd className="text-right text-sm">
+              {row.label === "Base" && <MapPin size={12} className="mr-1 inline text-subtle" />}
+              {row.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="flex flex-wrap gap-1.5 p-5 sm:p-6">
+        {heroStack.map(tech => (
+          <Tag key={tech}>{tech}</Tag>
+        ))}
+      </div>
     </div>
   );
 }
@@ -154,30 +156,14 @@ export default function Hero() {
             className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
             <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-primary/10 blur-3xl" aria-hidden />
-            <div className="mb-4 flex items-center gap-4 rounded-xl border border-border bg-card/80 p-3 backdrop-blur">
-              <img
-                src={`${import.meta.env.BASE_URL}${profile.photo}`}
-                alt={`Foto de ${profile.name}`}
-                width={56}
-                height={56}
-                className="h-14 w-14 rounded-lg object-cover object-[50%_28%]"
-              />
-              <div className="min-w-0">
-                <p className="truncate font-medium">{profile.name}</p>
-                <p className="truncate font-mono text-xs text-muted-foreground">{profile.focus}</p>
-              </div>
-              <span className="ml-auto hidden items-center gap-1 font-mono text-[11px] text-subtle sm:inline-flex">
-                <MapPin size={12} /> {profile.location}
-              </span>
-            </div>
-            <CodeWindow />
+            <ProfileCard />
           </motion.div>
         </div>
 
         {/* Métricas de impacto */}
         <motion.dl
           {...fade(0.4)}
-          className="mt-20 grid grid-cols-2 overflow-hidden rounded-2xl border border-border bg-border gap-px lg:grid-cols-4"
+          className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4"
         >
           {metrics.map(m => (
             <div key={m.label} className="bg-background p-5 sm:p-6">

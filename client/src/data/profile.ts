@@ -18,14 +18,17 @@ export const profile = {
   headline:
     "Construo APIs .NET robustas, produtos mobile e sistemas com agentes de IA — do banco de dados à interface.",
   summary:
-    "Desenvolvedor Full Stack com foco em C#/.NET e Clean Architecture. Já entreguei de calculadora de emissões GHG multi-tenant a triagem inteligente com LLMs e apps com grande base de usuários para a BB Seguros. Gosto de código que escala, é auditável e gera resultado mensurável para o negócio.",
+    "Desenvolvedor Full Stack com foco em C#/.NET e Clean Architecture. Já entreguei de calculadora de emissões GHG white label a revisões em sistemas de triagem com IA e apps com grande base de usuários para a BB Seguros. Gosto de código que escala, é auditável e gera resultado mensurável para o negócio.",
 } as const;
 
+/** Tags exibidas no card de perfil do Hero. */
+export const heroStack = ["C#", ".NET", "Clean Architecture", "React", "PostgreSQL", "LLMs"] as const;
+
 export const metrics = [
-  { value: "+35%", label: "em vendas após reestruturar o CRUD do marketplace", context: "Loopi Group" },
-  { value: "+40%", label: "de novos usuários autenticados com SSO social no 1º mês", context: "Loopi Group" },
-  { value: "100%", label: "dos secrets migrados para GitHub Secrets, sem downtime", context: "CooperX · ABF" },
-  { value: ".NET 10", label: "Clean Architecture, multi-tenant e testes E2E em Docker", context: "AgrocarbonBR" },
+  { value: "+35%", label: "em vendas após a revisão do CRUD das plataformas de venda", context: "Loopi Group" },
+  { value: "+40%", label: "de adesão de novos usuários após aprimorar o sistema de autenticação", context: "Loopi Group" },
+  { value: "GHG", label: "Calculadora de emissões white label em .NET 10, baseada no GHG Protocol", context: "AgrocarbonBR" },
+  { value: "ABF", label: "Evoluindo continuamente as APIs .NET que sustentam os sistemas da Associação Brasileira de Franchising", context: "CooperX Brasil" },
 ] as const;
 
 export type Experience = {
@@ -46,10 +49,9 @@ export const experiences: Experience[] = [
     location: "Remoto",
     current: true,
     bullets: [
-      "Mantenho e evoluo as APIs .NET dos sistemas principais da **ABF — Associação Brasileira de Franchising**.",
-      "Removi **todos os secrets** expostos nas APIs, migrando-os para o **GitHub Secrets** e injetando-os na inicialização de cada aplicação — produção seguiu 100% estável.",
+      "Venho aprimorando continuamente as **APIs .NET** que sustentam os sistemas principais da **ABF — Associação Brasileira de Franchising**: manutenção, melhorias de código e evolução de funcionalidades.",
     ],
-    stack: ["C#", ".NET", "ASP.NET Core", "GitHub Actions", "GitHub Secrets"],
+    stack: ["C#", ".NET", "ASP.NET Core", "GitHub Actions"],
   },
   {
     company: "AgrocarbonBR",
@@ -57,7 +59,7 @@ export const experiences: Experience[] = [
     period: "Mar. 2026 — Ago. 2026",
     location: "Híbrido",
     bullets: [
-      "Construí uma **calculadora de emissões de GEE em .NET 10** baseada no GHG Protocol, base do marketplace próprio de um grande cliente.",
+      "Construí uma **calculadora de emissões de GEE dinâmica e white label** em **.NET 10**, baseada no **GHG Protocol**, base do marketplace próprio de um grande cliente.",
       "API com **Clean Architecture** e PostgreSQL, **multi-tenant** com isolamento por CNPJ e fatores de emissão versionados e auditáveis.",
       "Resultados validados contra a planilha oficial do GHG Protocol, com **testes E2E em container Docker**.",
     ],
@@ -69,11 +71,12 @@ export const experiences: Experience[] = [
     period: "Jan. 2026 — Out. 2026",
     location: "Híbrido",
     bullets: [
-      "Atuei no **sistema de triagem inteligente com agentes de IA** do app Loopi (Python, C#/.NET e LLMs via API).",
-      "Reestruturei o CRUD do marketplace white label — as vendas subiram cerca de **35%**.",
-      "Implementei **SSO via redes sociais** nos apps, elevando em cerca de **40%** a autenticação de novos usuários no 1º mês.",
+      "Manutenção e evolução de **APIs .NET** estruturadas em **Clean Architecture** e **Vertical Slice Architecture**.",
+      "Revisão do **CRUD das plataformas de venda** da empresa, contribuindo para um aumento de cerca de **35% nas vendas**.",
+      "Aprimoramento do **sistema de autenticação**, resultando em **40% mais adesão de novos usuários**.",
+      "Revisões e manutenções no **sistema de triagem inteligente com agentes de IA** do app Loopi (Python, C#/.NET e LLMs via API).",
     ],
-    stack: ["C#", ".NET", "Python", "LLMs", "React Native", "SSO / OAuth"],
+    stack: ["C#", ".NET", "Clean Architecture", "Vertical Slice", "Python", "LLMs", "Auth"],
   },
   {
     company: "Loopi Group × BB Seguros",
@@ -95,6 +98,8 @@ export type Project = {
   description: string;
   stack: string[];
   link?: { label: string; href: string };
+  /** Meu papel no projeto, exibido em destaque no card. */
+  role?: string;
   /** Selo exibido quando não há link público (padrão: "Projeto corporativo"). */
   note?: string;
   featured?: boolean;
@@ -105,8 +110,9 @@ export const projects: Project[] = [
   {
     title: "Triagem Inteligente com Agentes de IA",
     kicker: "Loopi · IA aplicada",
+    role: "Revisão e manutenção",
     description:
-      "Agentes de IA treinados para compreender, classificar, direcionar e resolver demandas de usuários — em produção no app Loopi. Combina Machine Learning, Deep Learning, fine-tuning e LLMs via API, orquestrados por serviços em C#/.NET e Python.",
+      "Atuei nas revisões e manutenções do sistema de triagem do app Loopi, em produção: agentes de IA que compreendem, classificam, direcionam e resolvem demandas de usuários. Meu trabalho envolveu os serviços em C#/.NET e Python que orquestram os modelos (ML, Deep Learning, fine-tuning e LLMs via API) — corrigindo, ajustando e evoluindo o fluxo.",
     stack: ["Python", "C#", ".NET", "LLMs", "Fine-Tuning", "ML / DL"],
     featured: true,
     visual: "ai",
@@ -114,8 +120,9 @@ export const projects: Project[] = [
   {
     title: "Calculadora de Emissões GEE",
     kicker: "AgrocarbonBR · Clima",
+    role: "Desenvolvimento",
     description:
-      "API multi-tenant em .NET 10 baseada no GHG Protocol, com fatores de emissão versionados e auditáveis, validada contra a planilha oficial.",
+      "Calculadora de emissões de GEE dinâmica e white label, baseada no GHG Protocol. API multi-tenant em .NET 10 com Clean Architecture e PostgreSQL, fatores de emissão versionados e auditáveis, validada contra a planilha oficial e testada E2E em Docker.",
     stack: [".NET 10", "PostgreSQL", "Clean Architecture", "Docker"],
     visual: "carbon",
   },

@@ -1,4 +1,13 @@
-import { ArrowUpRight, Bot, Globe, Leaf, Lock, ShieldCheck, Smartphone } from "lucide-react";
+import {
+  ArrowUpRight,
+  Bot,
+  Globe,
+  Leaf,
+  Lock,
+  ShieldCheck,
+  Smartphone,
+  Wrench,
+} from "lucide-react";
 import type { ReactNode } from "react";
 import { profile, projects, type Project } from "@/data/profile";
 import { cn } from "@/lib/utils";
@@ -98,6 +107,12 @@ function ProjectCard({ project, className }: { project: Project; className?: str
           {project.title}
         </Wrapper>
       </h3>
+      {project.role && (
+        <p className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-md border border-primary/30 bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+          <Wrench size={12} />
+          Meu papel: {project.role}
+        </p>
+      )}
       <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{project.description}</p>
 
       {project.featured && (
