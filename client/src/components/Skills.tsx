@@ -1,113 +1,82 @@
-import { Code2, Gamepad2, Smartphone, Database, GitBranch, CheckCircle } from 'lucide-react';
+import { Blocks, BrainCircuit, Database, Layout, Server } from "lucide-react";
+import type { ReactNode } from "react";
+import { education, profile, skillGroups } from "@/data/profile";
+import { cn } from "@/lib/utils";
+import { Reveal, SectionHeading, trackSpotlight } from "./common";
 
-/**
- * Skills Section Component
- * Design: Minimalismo Técnico - Grid de skills com ícones
- * - Cards com ícones em azul elétrico e laranja
- * - Hover effects com elevação sutil
- * - Organização por categoria
- */
+const groupIcons: Record<string, ReactNode> = {
+  "Back-end": <Server size={16} />,
+  "Front-end & Mobile": <Layout size={16} />,
+  "Dados & Infra": <Database size={16} />,
+  IA: <BrainCircuit size={16} />,
+  "Arquitetura & Práticas": <Blocks size={16} />,
+};
+
 export default function Skills() {
-  const skillCategories = [
-    {
-      title: 'Linguagens',
-      icon: Code2,
-      skills: ['C#', 'TypeScript', 'JavaScript', 'Java'],
-    },
-    {
-      title: 'Game Development',
-      icon: Gamepad2,
-      skills: ['Unity Engine (C#)', 'Game Loop Optimization', 'State Management'],
-    },
-    {
-      title: 'Mobile & Frontend',
-      icon: Smartphone,
-      skills: ['React Native', 'React.js', 'Context API', 'Hooks'],
-    },
-    {
-      title: 'Backend & Databases',
-      icon: Database,
-      skills: ['.NET (C#)', 'RESTful APIs (CRUD)', 'PostgreSQL', 'Node.js'],
-    },
-    {
-      title: 'Tools & Infrastructure',
-      icon: GitBranch,
-      skills: ['Git/GitHub', 'Unit Testing', 'Software Quality Assurance (QA)'],
-    },
-    {
-      title: 'Soft Skills',
-      icon: CheckCircle,
-      skills: ['Leadership', 'Problem Solving', 'Communication', 'Team Collaboration'],
-    },
-  ];
-
   return (
-    <section id="skills" className="py-20 md:py-32 bg-white">
+    <section id="stack" className="py-20 md:py-28">
       <div className="container">
-        <div className="space-y-16">
-          {/* Section Header */}
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Habilidades</h2>
-            <p className="text-xl text-foreground/70 max-w-2xl">
-              Conjunto abrangente de competências técnicas e soft skills desenvolvidas ao longo de minha carreira como desenvolvedor Full Stack.
-            </p>
-          </div>
+        <SectionHeading
+          index="03"
+          eyebrow="Stack & Formação"
+          title="Ferramentas que uso no dia a dia."
+          description={profile.summary}
+        />
 
-          {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillCategories.map((category, index) => {
-              const Icon = category.icon;
-              return (
-                <div
-                  key={index}
-                  className="p-6 bg-background border border-border rounded-lg hover:shadow-lg hover:border-primary transition-all duration-200 group"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors duration-200">
-                      <Icon size={24} className="text-primary group-hover:text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <li key={skillIndex} className="flex items-center gap-2 text-foreground/70">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {skillGroups.map((group, i) => (
+            <Reveal
+              key={group.title}
+              delay={(i % 3) * 0.06}
+              className={cn("flex", i === 0 && "lg:col-span-1")}
+            >
+              <div
+                onMouseMove={trackSpotlight}
+                className="spotlight w-full rounded-2xl border border-border bg-card/50 p-6"
+              >
+                <div className="mb-5 flex items-center gap-2.5">
+                  <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary/10 text-primary">
+                    {groupIcons[group.title]}
+                  </span>
+                  <h3 className="font-medium">{group.title}</h3>
                 </div>
-              );
-            })}
-          </div>
+                <ul className="flex flex-wrap gap-2">
+                  {group.items.map(item => (
+                    <li
+                      key={item}
+                      className="rounded-lg border border-border bg-background px-2.5 py-1 text-sm text-foreground/85"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
 
-          {/* Proficiency Levels */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-foreground">Nível de Proficiência</h3>
-            <div className="space-y-4">
-              {[
-                { skill: 'C# & .NET', level: 95 },
-                { skill: 'React Native', level: 90 },
-                { skill: 'React.js', level: 85 },
-                { skill: 'Unity', level: 88 },
-                { skill: 'PostgreSQL', level: 80 },
-                { skill: 'TypeScript', level: 85 },
-              ].map((item, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-foreground">{item.skill}</span>
-                    <span className="text-sm text-foreground/50">{item.level}%</span>
+          {/* Formação */}
+          <Reveal delay={0.12} className="flex">
+            <div className="w-full rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-card/50 to-card/50 p-6">
+              <p className="eyebrow mb-4">Formação</p>
+              <h3 className="font-medium">{education.course}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">IDP · Brasília</p>
+              <p className="mt-1 font-mono text-[11px] text-subtle">{education.period}</p>
+
+              <div className="mt-5 space-y-3 border-t border-border pt-5">
+                {education.certifications.map(cert => (
+                  <div key={cert.title}>
+                    <p className="text-sm">{cert.title}</p>
+                    <p className="font-mono text-[11px] text-subtle">
+                      {cert.issuer} · {cert.date}
+                    </p>
                   </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${item.level}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+                <p className="text-sm text-muted-foreground">
+                  {education.languages.map(l => `${l.name} (${l.level.toLowerCase()})`).join(" · ")}
+                </p>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

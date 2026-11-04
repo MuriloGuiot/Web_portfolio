@@ -1,207 +1,95 @@
-import { Mail, Phone, MapPin, Linkedin, Github, Send, Download } from 'lucide-react';
-import { useState } from 'react';
+import { useState } from "react";
+import { ArrowUpRight, Check, Copy, Download, Mail, Phone } from "lucide-react";
+import { profile } from "@/data/profile";
+import { GithubIcon, LinkedinIcon, Reveal } from "./common";
 
-/**
- * Contact Section Component
- * Design: Minimalismo TÃ©cnico - FormulÃ¡rio limpo + informaÃ§Ãµes de contato
- * - Cards com informaÃ§Ãµes de contato
- * - FormulÃ¡rio responsivo
- * - Links para redes sociais
- */
 export default function Contact() {
-  const cvDownloadUrl = `${import.meta.env.BASE_URL}MuriloG_CV.pdf`;
+  const [copied, setCopied] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const subject = encodeURIComponent(`Nova mensagem do portifólio - ${formData.name}`);
-    const body = encodeURIComponent(
-      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
-    );
-
-    window.location.href = `mailto:muriloguiot@gmail.com?subject=${subject}&body=${body}`;
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
-  };
-
-  const contactInfo = [
+  const links = [
+    { label: "LinkedIn", href: profile.linkedin, icon: <LinkedinIcon size={16} />, external: true },
+    { label: "GitHub", href: profile.github, icon: <GithubIcon size={16} />, external: true },
+    { label: profile.phone.label, href: profile.phone.href, icon: <Phone size={16} /> },
     {
-      icon: Mail,
-      label: 'Email',
-      value: 'muriloguiot@gmail.com',
-      href: 'mailto:muriloguiot@gmail.com',
-    },
-    {
-      icon: Phone,
-      label: 'Telefone',
-      value: '+55 61 99316-8008',
-      href: 'tel:+5561993168008',
-    },
-    {
-      icon: MapPin,
-      label: 'Localização',
-      value: 'Brasília, DF',
-      href: '#',
+      label: "Currículo (PDF)",
+      href: `${import.meta.env.BASE_URL}${profile.cvFile}`,
+      icon: <Download size={16} />,
+      download: true,
     },
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-white">
+    <section id="contato" className="py-20 md:py-28">
       <div className="container">
-        <div className="space-y-16">
-          {/* Section Header */}
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Entre em Contato</h2>
-            <p className="text-xl text-foreground/70 max-w-2xl">
-              Estou sempre aberto a novas oportunidades e colaborações. Sinta-se livre para entrar em contato!
-            </p>
-          </div>
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 px-6 py-14 text-center sm:px-12 md:py-20">
+            <div className="bg-grid pointer-events-none absolute inset-0" aria-hidden />
+            <div
+              className="pointer-events-none absolute inset-x-0 -bottom-1/2 h-full bg-[radial-gradient(ellipse_at_center,var(--glow),transparent_65%)]"
+              aria-hidden
+            />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Contact Info */}
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => {
-                const Icon = info.icon;
-                return (
-                  <a
-                    key={index}
-                    href={info.href}
-                    className="flex items-start gap-4 p-4 bg-background border border-border rounded-lg hover:border-primary hover:shadow-lg transition-all duration-200 group"
-                  >
-                    <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors duration-200 flex-shrink-0">
-                      <Icon size={24} className="text-primary group-hover:text-white" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-foreground/50 font-medium">{info.label}</p>
-                      <p className="text-foreground font-semibold">{info.value}</p>
-                    </div>
-                  </a>
-                );
-              })}
+            <div className="relative">
+              <p className="eyebrow mb-5">
+                <span className="text-subtle">04 /</span> Contato
+              </p>
+              <h2 className="mx-auto max-w-2xl text-3xl leading-[1.1] font-semibold sm:text-5xl">
+                Vamos construir algo <span className="text-gradient">que funcione em produção?</span>
+              </h2>
+              <p className="mx-auto mt-5 max-w-lg text-muted-foreground">
+                Aberto a conversas sobre oportunidades, projetos e colaborações. Respondo rápido
+                por e-mail ou LinkedIn.
+              </p>
 
-              {/* Social Links */}
-              <div className="space-y-4 pt-4 border-t border-border">
-                <p className="text-sm font-semibold text-foreground">Redes Sociais</p>
-                <div className="flex gap-3">
-                  <a
-                    href="https://linkedin.com/in/murilo-guiot-22944a2b8"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 p-3 bg-background border border-border rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-medium text-sm"
-                  >
-                    <Linkedin size={20} />
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://github.com/MuriloGuiot"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 p-3 bg-background border border-border rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-medium text-sm"
-                  >
-                    <Github size={20} />
-                    GitHub
-                  </a>
-                </div>
-                <p className="text-sm font-semibold text-foreground">Meu currículo</p>
+              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
-                  href={cvDownloadUrl}
-                  download="MuriloG_CV.pdf"
-                  className="w-full flex items-center justify-center gap-2 p-3 bg-background border border-border rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 font-medium text-sm"
+                  href={`mailto:${profile.email}`}
+                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:brightness-110 sm:w-auto"
                 >
-                  <Download size={20} />
-                  CV Download
+                  <Mail size={16} />
+                  {profile.email}
                 </a>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <form onSubmit={handleSubmit} className="space-y-6 p-8 bg-background border border-border rounded-lg">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="block text-sm font-semibold text-foreground">
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-white border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
-                    placeholder="Seu nome"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-semibold text-foreground">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-white border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
-                    placeholder="seu@email.com"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="message" className="block text-sm font-semibold text-foreground">
-                    Mensagem
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 bg-white border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200 resize-none"
-                    placeholder="Sua mensagem aqui..."
-                  ></textarea>
-                </div>
-
                 <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-semibold"
+                  onClick={copyEmail}
+                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/60 px-5 text-sm font-medium backdrop-blur transition-colors hover:bg-secondary sm:w-auto"
+                  aria-live="polite"
                 >
-                  Enviar Mensagem
-                  <Send size={20} />
+                  {copied ? <Check size={16} className="text-success" /> : <Copy size={16} />}
+                  {copied ? "Copiado!" : "Copiar e-mail"}
                 </button>
+              </div>
 
-                {submitted && (
-                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 font-medium text-center">
-                    Sua mensagem foi preparada no seu aplicativo de e-mail.
-                  </div>
-                )}
-              </form>
+              <ul className="mt-10 flex flex-wrap items-center justify-center gap-2">
+                {links.map(link => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      {...(link.download ? { download: true } : {})}
+                      className="group inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    >
+                      {link.icon}
+                      {link.label}
+                      {link.external && (
+                        <ArrowUpRight size={13} className="opacity-0 transition-opacity group-hover:opacity-100" />
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

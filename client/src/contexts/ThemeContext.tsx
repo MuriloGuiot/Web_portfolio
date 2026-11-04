@@ -16,36 +16,42 @@ interface ThemeProviderProps {
   switchable?: boolean;
 }
 
+function readStoredTheme(): Theme | null {
+  try {
+    const stored = localStorage.getItem("theme");
+    return stored === "light" || stored === "dark" ? stored : null;
+  } catch {
+    return null;
+  }
+}
+
 export function ThemeProvider({
   children,
-  defaultTheme = "light",
+  defaultTheme = "dark",
   switchable = false,
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (switchable) {
-      const stored = localStorage.getItem("theme");
-      return (stored as Theme) || defaultTheme;
-    }
-    return defaultTheme;
-  });
+  const [theme, setTheme] = useState<Theme>(() =>
+    switchable ? (readStoredTheme() ?? defaultTheme) : defaultTheme
+  );
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
+    root.classList.toggle("dark", theme === "dark");
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", theme === "dark" ? "#09090b" : "#fafafa");
 
     if (switchable) {
-      localStorage.setItem("theme", theme);
+      try {
+        localStorage.setItem("theme", theme);
+      } catch {
+        /* armazenamento indisponível: segue sem persistir */
+      }
     }
   }, [theme, switchable]);
 
   const toggleTheme = switchable
-    ? () => {
-        setTheme(prev => (prev === "light" ? "dark" : "light"));
-      }
+    ? () => setTheme(prev => (prev === "light" ? "dark" : "light"))
     : undefined;
 
   return (

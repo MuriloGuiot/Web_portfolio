@@ -4,6 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -27,6 +30,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-subtle: var(--subtle);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -42,146 +47,194 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/*
+ * Identidade visual
+ * - Base neutra (zinc) com um único acento: violeta — referência ao roxo do .NET.
+ * - Tipografia Geist (texto) + Geist Mono (detalhes técnicos).
+ * - Dark como padrão; light disponível pelo toggle.
+ */
 :root {
-  /* Minimalismo Técnico - Paleta de Cores */
-  --primary: #0066FF; /* Azul Elétrico */
-  --primary-foreground: #F8F9FA; /* Off-white */
-  --sidebar-primary: #0052CC;
-  --sidebar-primary-foreground: #F8F9FA;
-  --chart-1: #0066FF;
-  --chart-2: #FF8C42;
-  --chart-3: #0052CC;
-  --chart-4: #003D99;
-  --chart-5: #002966;
-  --radius: 0.65rem;
-  --background: #F8F9FA; /* Off-white */
-  --foreground: #2C3E50; /* Charcoal */
-  --card: #FFFFFF;
-  --card-foreground: #2C3E50;
-  --popover: #FFFFFF;
-  --popover-foreground: #2C3E50;
-  --secondary: #FF8C42; /* Laranja Suave */
-  --secondary-foreground: #FFFFFF;
-  --muted: #E8EAED; /* Cinza Claro */
-  --muted-foreground: #666666;
-  --accent: #FF8C42; /* Laranja para acentos */
-  --accent-foreground: #FFFFFF;
-  --destructive: #DC2626;
-  --destructive-foreground: #FFFFFF;
-  --border: #E8EAED;
-  --input: #FFFFFF;
-  --ring: #0066FF;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #2C3E50;
-  --sidebar-accent: #FF8C42;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #E8EAED;
-  --sidebar-ring: #0066FF;
+  --radius: 0.875rem;
+  --background: #fafafa;
+  --foreground: #0a0a0b;
+  --card: #ffffff;
+  --card-foreground: #0a0a0b;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0b;
+  --primary: #6d28d9;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #52525b;
+  --subtle: #71717a;
+  --accent: #ede9fe;
+  --accent-foreground: #4c1d95;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #7c3aed;
+  --grid-line: rgb(10 10 11 / 0.05);
+  --glow: rgb(124 58 237 / 0.18);
+  --chart-1: #6d28d9;
+  --chart-2: #0891b2;
+  --chart-3: #a78bfa;
+  --chart-4: #4c1d95;
+  --chart-5: #27272a;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0a0a0b;
+  --sidebar-primary: #6d28d9;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #7c3aed;
+  color-scheme: light;
 }
 
 .dark {
-  /* Dark mode - Minimalismo Técnico */
-  --primary: #3B82F6; /* Azul mais claro para dark mode */
-  --primary-foreground: #F8F9FA;
-  --sidebar-primary: #3B82F6;
-  --sidebar-primary-foreground: #F8F9FA;
-  --background: #0F172A; /* Muito escuro */
-  --foreground: #E8EAED;
-  --card: #1E293B;
-  --card-foreground: #E8EAED;
-  --popover: #1E293B;
-  --popover-foreground: #E8EAED;
-  --secondary: #FF8C42;
-  --secondary-foreground: #0F172A;
-  --muted: #334155;
-  --muted-foreground: #94A3B8;
-  --accent: #FF8C42;
-  --accent-foreground: #0F172A;
-  --destructive: #EF4444;
-  --destructive-foreground: #0F172A;
-  --border: #334155;
-  --input: #1E293B;
-  --ring: #3B82F6;
-  --chart-1: #3B82F6;
-  --chart-2: #FF8C42;
-  --chart-3: #60A5FA;
-  --chart-4: #1E40AF;
-  --chart-5: #1E3A8A;
-  --sidebar: #1E293B;
-  --sidebar-foreground: #E8EAED;
-  --sidebar-accent: #FF8C42;
-  --sidebar-accent-foreground: #0F172A;
-  --sidebar-border: #334155;
-  --sidebar-ring: #3B82F6;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #111113;
+  --card-foreground: #fafafa;
+  --popover: #111113;
+  --popover-foreground: #fafafa;
+  --primary: #a78bfa;
+  --primary-foreground: #0a0a0b;
+  --secondary: #18181b;
+  --secondary-foreground: #fafafa;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --subtle: #71717a;
+  --accent: rgb(167 139 250 / 0.12);
+  --accent-foreground: #c4b5fd;
+  --destructive: #f87171;
+  --destructive-foreground: #0a0a0b;
+  --success: #4ade80;
+  --border: rgb(255 255 255 / 0.08);
+  --input: rgb(255 255 255 / 0.1);
+  --ring: #a78bfa;
+  --grid-line: rgb(255 255 255 / 0.04);
+  --glow: rgb(139 92 246 / 0.22);
+  --chart-1: #a78bfa;
+  --chart-2: #22d3ee;
+  --chart-3: #c4b5fd;
+  --chart-4: #7c3aed;
+  --chart-5: #3f3f46;
+  --sidebar: #111113;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #a78bfa;
+  --sidebar-primary-foreground: #0a0a0b;
+  --sidebar-accent: #18181b;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: rgb(255 255 255 / 0.08);
+  --sidebar-ring: #a78bfa;
+  color-scheme: dark;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: hidden;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight text-balance;
   }
-  h2, h3 {
-    font-weight: 600;
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 30%, transparent);
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
+  a[href] {
     @apply cursor-pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
+    max-width: 1152px;
   }
-
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
-
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem; /* 32px - desktop padding */
-      padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
-    }
+  /* Grade técnica de fundo, esmaecendo nas bordas */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  .glow-top {
+    background: radial-gradient(ellipse 60% 50% at 50% -10%, var(--glow), transparent 70%);
+  }
+
+  /* Card com borda que acende levemente no hover, seguindo o cursor */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 300ms;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in srgb, var(--primary) 10%, transparent),
+      transparent 60%
+    );
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, var(--foreground) 30%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.18em] text-primary;
   }
 }

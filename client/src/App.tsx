@@ -25,18 +25,13 @@ function AppRoutes() {
   );
 }
 
-// NOTE: About Theme
-// - Design: Minimalismo Técnico - Light theme com cores vibrantes
-// - Paleta: Azul Elétrico (#0066FF) + Laranja Suave (#FF8C42)
-// - Tipografia: Poppins Bold para títulos, Inter Regular para corpo
+// Identidade visual: base neutra (zinc) + acento violeta (.NET), Geist / Geist Mono.
+// Dark por padrão, com alternância para light (persistida no localStorage).
 
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="dark" switchable>
         <TooltipProvider>
           <Toaster />
           <WouterRouter base={routerBase}>

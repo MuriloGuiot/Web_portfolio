@@ -1,23 +1,50 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Murilo Guiot — Desenvolvedor Full Stack C#/.NET</title>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Dev | Murilo</title>
-    <meta name="description" content="Full Stack Developer portfolio - C#, Unity, React Native, .NET. Head of Software Development at AgroCarbonBR." />
-    <meta name="keywords" content="developer, full stack, C#, React Native, .NET, portfolio" />
+      name="description"
+      content="Murilo Guiot, desenvolvedor Full Stack em Brasília. APIs C#/.NET com Clean Architecture, React, React Native e sistemas com agentes de IA."
+    />
     <meta name="author" content="Murilo Guiot" />
+    <meta name="theme-color" content="#09090b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Murilo Guiot — Desenvolvedor Full Stack C#/.NET" />
+    <meta
+      property="og:description"
+      content="APIs .NET robustas, apps mobile e sistemas com agentes de IA — do banco de dados à interface."
+    />
+    <meta property="og:url" content="https://dev.muriloguiot.io/" />
+    <meta property="og:image" content="https://dev.muriloguiot.io/opcao1.jpg" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2309090b'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='ui-monospace,monospace' font-weight='700' font-size='28' fill='%23a78bfa'%3EMG%3C/text%3E%3C/svg%3E"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Aplica o tema antes da renderização para evitar "flash" de cor.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light") document.documentElement.classList.remove("dark");
+      } catch (e) {}
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
-
 </html>
