@@ -23,10 +23,6 @@ function ProfileCard() {
         <div className="min-w-0">
           <p className="truncate text-lg font-semibold">{profile.name}</p>
           <p className="truncate font-mono text-xs text-muted-foreground">{profile.focus}</p>
-          <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-success">
-            <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            Aberto a conversas
-          </p>
         </div>
       </div>
 

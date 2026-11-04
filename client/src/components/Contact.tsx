@@ -47,8 +47,7 @@ export default function Contact() {
                 Vamos construir algo <span className="text-gradient">que funcione em produção?</span>
               </h2>
               <p className="mx-auto mt-5 max-w-lg text-muted-foreground">
-                Aberto a conversas sobre oportunidades, projetos e colaborações. Respondo rápido
-                por e-mail ou LinkedIn.
+                Para oportunidades, projetos ou colaborações, fale comigo por e-mail ou LinkedIn.
               </p>
 
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">

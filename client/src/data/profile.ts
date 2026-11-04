@@ -34,8 +34,10 @@ export const metrics = [
 export type Experience = {
   company: string;
   role: string;
+  /** Tipo de vínculo, quando relevante (ex.: Estágio, Autônomo). */
+  type?: string;
   period: string;
-  location: string;
+  location?: string;
   current?: boolean;
   bullets: string[];
   stack: string[];
@@ -55,7 +57,8 @@ export const experiences: Experience[] = [
   },
   {
     company: "AgrocarbonBR",
-    role: "Desenvolvedor Full Stack C#/.NET",
+    role: "Desenvolvedor Full Stack",
+    type: "Autônomo",
     period: "Mar. 2026 — Ago. 2026",
     location: "Híbrido",
     bullets: [
@@ -63,7 +66,7 @@ export const experiences: Experience[] = [
       "API com **Clean Architecture** e PostgreSQL, **multi-tenant** com isolamento por CNPJ e fatores de emissão versionados e auditáveis.",
       "Resultados validados contra a planilha oficial do GHG Protocol, com **testes E2E em container Docker**.",
     ],
-    stack: [".NET 10", "Clean Architecture", "PostgreSQL", "Docker", "Testes E2E"],
+    stack: ["C#", ".NET 10", "ASP.NET Core", "Clean Architecture", "PostgreSQL", "Docker"],
   },
   {
     company: "Loopi Group",
@@ -79,16 +82,39 @@ export const experiences: Experience[] = [
     stack: ["C#", ".NET", "Clean Architecture", "Vertical Slice", "Python", "LLMs", "Auth"],
   },
   {
-    company: "Loopi Group × BB Seguros",
-    role: "Desenvolvedor Mobile React Native",
-    period: "Fev. 2025 — Jan. 2026",
-    location: "Brasília, DF",
+    company: "BB Seguros (via Loopi Group)",
+    role: "Software Developer · React Native",
+    period: "Jun. 2025 — Jan. 2026",
+    location: "Presencial",
     bullets: [
       "Co-desenvolvi o **Segplay**, produto estratégico da BB Seguros em parceria com a Ciclic: novas features e manutenção de interfaces em React Native.",
       "Integração de **APIs REST** com os serviços da seguradora, otimização de componentes e correção de bugs críticos em app com grande base de usuários.",
       "Squads multidisciplinares com **Scrum**, junto a designers e POs, em regras de negócio complexas de seguros e previdência.",
     ],
     stack: ["React Native", "TypeScript", "APIs REST", "Scrum"],
+  },
+  {
+    company: "Loopi Group",
+    role: "Desenvolvedor Mobile React Native",
+    period: "Mai. 2025 — Jan. 2026",
+    location: "Presencial",
+    bullets: [
+      "Desenvolvimento e manutenção de aplicativos móveis em **React Native** e **TypeScript** dentro do ecossistema **Loopi Club**, app publicado nas lojas.",
+    ],
+    stack: ["React Native", "TypeScript", "JavaScript", "Git"],
+  },
+  {
+    company: "Loopi Group",
+    role: "Analista de QA",
+    type: "Estágio",
+    period: "Fev. 2025 — Mai. 2025",
+    bullets: [
+      "Testes manuais abrangentes em aplicativos móveis: **UAT**, regressão, sistema, usabilidade e exploratórios.",
+      "Criação de **planos de teste** e documentação técnica de casos de teste a partir de requisitos de negócio.",
+      "Apoio à **automação de testes com Appium**, aumentando a eficiência e a confiabilidade dos ciclos de lançamento.",
+      "Reporte de bugs e validação de correções junto aos desenvolvedores nas sprints, garantindo estabilidade em **Android e iOS**.",
+    ],
+    stack: ["Appium", "UAT", "Testes de regressão", "Plano de teste", "Android", "iOS"],
   },
 ];
 
@@ -193,10 +219,6 @@ export const education = {
   period: "2024 — 2028 (previsão)",
   certifications: [
     { title: "Clean Architecture Essencial — ASP.NET Core com C#", issuer: "Udemy", date: "Mai. 2026" },
-  ],
-  languages: [
-    { name: "Português", level: "Nativo" },
-    { name: "Inglês", level: "Fluente" },
   ],
 };
 

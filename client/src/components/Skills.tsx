@@ -71,9 +71,6 @@ export default function Skills() {
                     </p>
                   </div>
                 ))}
-                <p className="text-sm text-muted-foreground">
-                  {education.languages.map(l => `${l.name} (${l.level.toLowerCase()})`).join(" · ")}
-                </p>
               </div>
             </div>
           </Reveal>

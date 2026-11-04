@@ -23,7 +23,9 @@ export default function Experience() {
             <li key={exp.company + exp.period} className="relative md:grid md:grid-cols-[11rem_1fr]">
               <Reveal delay={i * 0.04} className="mb-3 pl-8 md:mb-0 md:pt-6 md:pr-8 md:pl-0">
                 <p className="font-mono text-xs text-muted-foreground md:text-right">{exp.period}</p>
-                <p className="mt-1 font-mono text-[11px] text-subtle md:text-right">{exp.location}</p>
+                {exp.location && (
+                  <p className="mt-1 font-mono text-[11px] text-subtle md:text-right">{exp.location}</p>
+                )}
               </Reveal>
 
               <span
@@ -51,6 +53,11 @@ export default function Experience() {
                     {exp.current && (
                       <span className="rounded-full bg-primary/10 px-2 py-0.5 font-mono text-[10px] tracking-wider text-primary uppercase">
                         Atual
+                      </span>
+                    )}
+                    {exp.type && (
+                      <span className="rounded-full border border-border px-2 py-0.5 font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+                        {exp.type}
                       </span>
                     )}
                   </header>
